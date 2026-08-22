@@ -1,0 +1,34 @@
+<div class="login-page">
+  <form #formulario="ngForm" class="login-card" (ngSubmit)="entrar(formulario)" novalidate>
+    <h1>Smart HAS</h1>
+    <p>Painel administrativo de estoque hospitalar</p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail institucional</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="email" required email />
+      @if (errosDeCampo()['email']) {
+        <mat-error>{{ errosDeCampo()['email'] }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" name="senha" [(ngModel)]="senha" required minlength="8" />
+      @if (errosDeCampo()['senha']) {
+        <mat-error>{{ errosDeCampo()['senha'] }}</mat-error>
+      }
+    </mat-form-field>
+
+    <p *ngIf="erroGeral()" class="erro-geral">{{ erroGeral() }}</p>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid || carregando()">
+      @if (carregando()) {
+        <mat-spinner diameter="20" />
+      } @else {
+        Entrar
+      }
+    </button>
+
+    <a routerLink="/registro">Criar conta institucional</a>
+  </form>
+</div>
