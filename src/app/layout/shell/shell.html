@@ -2,15 +2,12 @@
   <mat-sidenav mode="side" opened class="shell-sidenav">
     <div class="shell-brand">Smart HAS</div>
     <mat-nav-list>
-      <a
-        *ngFor="let item of itensDeNavegacao"
-        mat-list-item
-        [routerLink]="item.rota"
-        [style.display]="podeVer(item) ? 'flex' : 'none'"
-      >
-        <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
-        <span matListItemTitle>{{ item.rotulo }}</span>
-      </a>
+      <ng-container *ngFor="let item of itensDeNavegacao">
+        <a *ngIf="podeVer(item)" mat-list-item [routerLink]="item.rota">
+          <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
+          <span matListItemTitle>{{ item.rotulo }}</span>
+        </a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
 
