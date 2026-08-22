@@ -1,0 +1,33 @@
+.shell {
+  height: 100dvh;
+}
+
+.shell-sidenav {
+  width: 260px;
+  background: var(--mat-sys-surface-container);
+  display: flex;
+  flex-direction: column;
+}
+
+.shell-brand {
+  padding: 1.5rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--mat-sys-primary);
+}
+
+.shell-spacer {
+  flex: 1 1 auto;
+}
+
+.shell-perfil {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.shell-content {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
