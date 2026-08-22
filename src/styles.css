@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+.snackbar-sucesso {
+  --mdc-snackbar-container-color: var(--status-success);
+  --mdc-snackbar-supporting-text-color: #FFFFFF;
+}
+
+.snackbar-erro {
+  --mdc-snackbar-container-color: var(--status-danger);
+  --mdc-snackbar-supporting-text-color: #FFFFFF;
+}
