@@ -1,0 +1,42 @@
+<div class="login-page">
+  <form #formulario="ngForm" class="login-card" (ngSubmit)="registrar(formulario)" novalidate>
+    <h1>Criar conta</h1>
+    <p>Cadastro institucional — perfil Farmacêutico é atribuído automaticamente</p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome completo</mat-label>
+      <input matInput type="text" name="nome" [(ngModel)]="nome" required minlength="3" />
+      @if (errosDeCampo()['nome']) {
+        <mat-error>{{ errosDeCampo()['nome'] }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail institucional</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="email" required email />
+      @if (errosDeCampo()['email']) {
+        <mat-error>{{ errosDeCampo()['email'] }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" name="senha" [(ngModel)]="senha" required minlength="8" />
+      @if (errosDeCampo()['senha']) {
+        <mat-error>{{ errosDeCampo()['senha'] }}</mat-error>
+      }
+    </mat-form-field>
+
+    <p *ngIf="erroGeral()" class="erro-geral">{{ erroGeral() }}</p>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid || carregando()">
+      @if (carregando()) {
+        <mat-spinner diameter="20" />
+      } @else {
+        Criar conta
+      }
+    </button>
+
+    <a routerLink="/login">Já tenho conta</a>
+  </form>
+</div>
