@@ -19,6 +19,10 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
       },
+      {
+        path: 'admin/itens',
+        loadChildren: () => import('./features/itens/itens.routes').then((m) => m.itensRoutes),
+      },
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },
