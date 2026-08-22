@@ -1,0 +1,28 @@
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-tag--danger {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+}
+
+.status-tag--warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+}
+
+.status-tag--success {
+  background: var(--status-success-bg);
+  color: var(--status-success);
+}
+
+.status-tag--info {
+  background: var(--status-info-bg);
+  color: var(--status-info);
+}
