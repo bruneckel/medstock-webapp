@@ -12,6 +12,7 @@ import { FornecedorService } from '../../../core/services/fornecedor.service';
 import { SnackbarService } from '../../../core/ui/snackbar.service';
 import { extrairErrosDeCampo, extrairMensagemDeErro } from '../../../core/http/erro-api.util';
 import { Fornecedor, ItemCriacaoRequest, TipoItem } from '../../../core/models';
+import { PrevisaoPanel } from '../previsao-panel/previsao-panel';
 
 @Component({
   selector: 'app-item-form',
@@ -23,6 +24,7 @@ import { Fornecedor, ItemCriacaoRequest, TipoItem } from '../../../core/models';
     MatSelectModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    PrevisaoPanel,
   ],
   templateUrl: './item-form.html',
 })

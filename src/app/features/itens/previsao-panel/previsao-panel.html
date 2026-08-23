@@ -1,0 +1,23 @@
+<section class="previsao-panel">
+  <div class="previsao-header">
+    <h2>Previsão de demanda</h2>
+    <button mat-stroked-button type="button" (click)="gerar()" [disabled]="gerando()">
+      Gerar previsão
+    </button>
+  </div>
+
+  <ng-container *ngIf="carregando(); else conteudoPrevisao">
+    <p>Carregando…</p>
+  </ng-container>
+  <ng-template #conteudoPrevisao>
+    <ng-container *ngIf="previsao() as previsaoAtual; else semPrevisao">
+      <ng-container *ngIf="configuracaoGrafico() as config">
+        <app-chart-canvas [config]="config" />
+      </ng-container>
+      <p class="previsao-recomendacao">{{ previsaoAtual.recomendacao }}</p>
+    </ng-container>
+    <ng-template #semPrevisao>
+      <p>Nenhuma previsão gerada ainda para este item.</p>
+    </ng-template>
+  </ng-template>
+</section>
