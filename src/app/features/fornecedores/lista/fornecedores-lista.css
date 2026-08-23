@@ -5,9 +5,16 @@
   margin-bottom: 1rem;
 }
 
+.fornecedores-tabela-card {
+  border-radius: var(--radius-card);
+  background: var(--mat-sys-surface-container);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+}
+
 .fornecedores-tabela {
   width: 100%;
-  background: var(--mat-sys-surface-container);
+  background: transparent;
 }
 
 .fornecedor-situacao {
