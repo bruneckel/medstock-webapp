@@ -37,7 +37,7 @@
 
 .form-row > mat-form-field {
   flex: 1;
-  min-width: 12rem;
+  min-width: 10rem;
 }
 
 .form-section-title {
