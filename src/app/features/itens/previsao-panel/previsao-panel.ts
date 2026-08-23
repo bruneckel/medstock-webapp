@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ChartConfiguration } from 'chart.js';
 import { PrevisaoService } from '../../../core/services/previsao.service';
+import { AuthService } from '../../../core/auth/auth.service';
 import { SnackbarService } from '../../../core/ui/snackbar.service';
 import { extrairMensagemDeErro } from '../../../core/http/erro-api.util';
 import { Previsao } from '../../../core/models';
@@ -16,12 +17,15 @@ import { ChartCanvas } from '../../../shared/components/chart-canvas/chart-canva
 })
 export class PrevisaoPanel {
   private readonly previsaoService = inject(PrevisaoService);
+  private readonly authService = inject(AuthService);
   private readonly snackbar = inject(SnackbarService);
 
   readonly itemId = input.required<string>();
   readonly previsao = signal<Previsao | null>(null);
   readonly carregando = signal(true);
   readonly gerando = signal(false);
+
+  readonly podeGerar = computed(() => this.authService.temPerfil('ADMIN', 'GESTOR', 'FARMACEUTICO'));
 
   readonly configuracaoGrafico = computed<ChartConfiguration | null>(() => {
     const atual = this.previsao();

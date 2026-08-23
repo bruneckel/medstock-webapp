@@ -2,10 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { PedidoDetalhe } from './pedido-detalhe';
 import { PedidoService } from '../../../core/services/pedido.service';
 import { FornecedorService } from '../../../core/services/fornecedor.service';
+import { ItemService } from '../../../core/services/item.service';
 import { Pedido } from '../../../core/models';
 
 describe('PedidoDetalhe', () => {
@@ -34,6 +37,7 @@ describe('PedidoDetalhe', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         provideRouter([]),
+        provideAnimationsAsync(),
         {
           provide: ActivatedRoute,
           useValue: { snapshot: { paramMap: convertToParamMap({ id: '1' }) } },
@@ -41,6 +45,9 @@ describe('PedidoDetalhe', () => {
       ],
     });
     vi.spyOn(TestBed.inject(FornecedorService), 'listar').mockReturnValue(of([]));
+    vi.spyOn(TestBed.inject(ItemService), 'listar').mockReturnValue(
+      of({ conteudo: [], pagina: 0, tamanho: 100, totalElementos: 0, totalPaginas: 0 }),
+    );
   });
 
   it('loads the pedido on init', () => {
@@ -58,6 +65,9 @@ describe('PedidoDetalhe', () => {
     const confirmarSpy = vi
       .spyOn(TestBed.inject(PedidoService), 'confirmar')
       .mockReturnValue(of(pedidoEntregue));
+
+    const dialog = TestBed.inject(MatDialog);
+    vi.spyOn(dialog, 'open').mockReturnValue({ afterClosed: () => of(true) } as never);
 
     const fixture = TestBed.createComponent(PedidoDetalhe);
     fixture.detectChanges();

@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LoginRequest, RegistroRequest, TokenResponse, Usuario } from '../models';
+import { LoginRequest, PerfilUsuario, RegistroRequest, TokenResponse, Usuario } from '../models';
 
 const CHAVE_SESSAO = 'medstock.sessao';
 
@@ -31,6 +31,11 @@ export class AuthService {
 
   token(): string | null {
     return this._token();
+  }
+
+  temPerfil(...perfis: PerfilUsuario[]): boolean {
+    const atual = this.perfil();
+    return atual !== null && perfis.includes(atual);
   }
 
   login(request: LoginRequest): Observable<TokenResponse> {

@@ -21,8 +21,3 @@
   margin: 0;
   color: var(--mat-sys-primary);
 }
-
-.erro-geral {
-  color: var(--status-danger);
-  margin: 0;
-}

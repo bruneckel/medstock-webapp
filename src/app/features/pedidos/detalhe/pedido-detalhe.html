@@ -3,6 +3,10 @@
     <p>Carregando…</p>
   </ng-container>
   <ng-template #conteudoPedido>
+    <ng-container *ngIf="erro(); else detalhePedido">
+      <p class="erro-geral">{{ erro() }}</p>
+    </ng-container>
+    <ng-template #detalhePedido>
     <ng-container *ngIf="pedido() as pedidoAtual">
       <div class="pedido-detalhe-header">
         <h1>Pedido {{ pedidoAtual.codigo }}</h1>
@@ -23,7 +27,7 @@
       <h2>Itens do pedido</h2>
       <ul class="pedido-itens">
         <li *ngFor="let linha of pedidoAtual.itens">
-          {{ linha.quantidade }}× {{ linha.itemId }} — {{ linha.valorUnitario | currency: 'BRL' }}
+          {{ linha.quantidade }}× {{ nomeItem(linha.itemId) }} — {{ linha.valorUnitario | currency: 'BRL' }}
         </li>
       </ul>
 
@@ -51,5 +55,6 @@
         </div>
       </div>
     </ng-container>
+    </ng-template>
   </ng-template>
 </div>

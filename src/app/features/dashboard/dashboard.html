@@ -1,63 +1,69 @@
 <div class="dashboard">
   <h1>Resumo do dia</h1>
 
-  @if (carregando()) {
+  <ng-container *ngIf="carregando(); else conteudoDashboard">
     <p>Carregando…</p>
-  } @else if (erro()) {
-    <p class="erro-geral">{{ erro() }}</p>
-  } @else if (resumo(); as resumoAtual) {
-    <div class="dashboard-kpis">
-      <div class="kpi-card">
-        <span class="kpi-valor">{{ resumoAtual.estoque.total }}</span>
-        <span class="kpi-rotulo">Itens no estoque</span>
-      </div>
-      <div class="kpi-card">
-        <span class="kpi-valor">{{ resumoAtual.estoque.criticos }}</span>
-        <span class="kpi-rotulo">Críticos</span>
-      </div>
-      <div class="kpi-card">
-        <span class="kpi-valor">{{ resumoAtual.estoque.vencendo }}</span>
-        <span class="kpi-rotulo">Vencendo em 30 dias</span>
-      </div>
-      <div class="kpi-card">
-        <span class="kpi-valor">{{ resumoAtual.pedidosDoDia.length }}</span>
-        <span class="kpi-rotulo">Pedidos hoje</span>
-      </div>
-    </div>
+  </ng-container>
+  <ng-template #conteudoDashboard>
+    <ng-container *ngIf="erro(); else conteudoResumo">
+      <p class="erro-geral">{{ erro() }}</p>
+    </ng-container>
+    <ng-template #conteudoResumo>
+      <ng-container *ngIf="resumo() as resumoAtual">
+        <div class="dashboard-kpis">
+          <div class="kpi-card">
+            <span class="kpi-valor">{{ resumoAtual.estoque.total }}</span>
+            <span class="kpi-rotulo">Itens no estoque</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-valor">{{ resumoAtual.estoque.criticos }}</span>
+            <span class="kpi-rotulo">Críticos</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-valor">{{ resumoAtual.estoque.vencendo }}</span>
+            <span class="kpi-rotulo">Vencendo em 30 dias</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-valor">{{ resumoAtual.pedidosDoDia.length }}</span>
+            <span class="kpi-rotulo">Pedidos hoje</span>
+          </div>
+        </div>
 
-    <div class="dashboard-grid">
-      <section class="dashboard-panel">
-        <h2>Distribuição de status</h2>
-        @if (configuracaoGrafico(); as config) {
-          <app-chart-canvas [config]="config" />
-        }
-      </section>
+        <div class="dashboard-grid">
+          <section class="dashboard-panel">
+            <h2>Distribuição de status</h2>
+            @if (configuracaoGrafico(); as config) {
+              <app-chart-canvas [config]="config" />
+            }
+          </section>
 
-      <section class="dashboard-panel">
-        <h2>Pedidos do dia</h2>
-        <ul *ngIf="resumoAtual.pedidosDoDia.length; else semPedidos">
-          <li *ngFor="let pedido of resumoAtual.pedidosDoDia">
-            <span>{{ pedido.codigo }}</span>
-            <app-status-tag [status]="pedido.status" />
-          </li>
-        </ul>
-        <ng-template #semPedidos>
-          <p>Nenhum pedido hoje.</p>
-        </ng-template>
-      </section>
+          <section class="dashboard-panel">
+            <h2>Pedidos do dia</h2>
+            <ul *ngIf="resumoAtual.pedidosDoDia.length; else semPedidos">
+              <li *ngFor="let pedido of resumoAtual.pedidosDoDia">
+                <span>{{ pedido.codigo }}</span>
+                <app-status-tag [status]="pedido.status" />
+              </li>
+            </ul>
+            <ng-template #semPedidos>
+              <p>Nenhum pedido hoje.</p>
+            </ng-template>
+          </section>
 
-      <section class="dashboard-panel">
-        <h2>Alertas recentes</h2>
-        <ul *ngIf="resumoAtual.alertasRecentes.length; else semAlertas">
-          <li *ngFor="let alerta of resumoAtual.alertasRecentes">
-            <span>{{ alerta.titulo }}</span>
-            <app-status-tag [status]="alerta.severidade" />
-          </li>
-        </ul>
-        <ng-template #semAlertas>
-          <p>Nenhum alerta recente.</p>
-        </ng-template>
-      </section>
-    </div>
-  }
+          <section class="dashboard-panel">
+            <h2>Alertas recentes</h2>
+            <ul *ngIf="resumoAtual.alertasRecentes.length; else semAlertas">
+              <li *ngFor="let alerta of resumoAtual.alertasRecentes">
+                <span>{{ alerta.titulo }}</span>
+                <app-status-tag [status]="alerta.severidade" />
+              </li>
+            </ul>
+            <ng-template #semAlertas>
+              <p>Nenhum alerta recente.</p>
+            </ng-template>
+          </section>
+        </div>
+      </ng-container>
+    </ng-template>
+  </ng-template>
 </div>

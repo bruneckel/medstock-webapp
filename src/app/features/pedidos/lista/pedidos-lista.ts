@@ -42,6 +42,7 @@ export class PedidosLista {
   readonly pedidos = signal<Pedido[]>([]);
   readonly fornecedores = signal<Fornecedor[]>([]);
   readonly carregando = signal(true);
+  readonly erro = signal<string | null>(null);
 
   status: StatusPedido | '' = '';
   somenteAtrasados = false;
@@ -70,9 +71,16 @@ export class PedidosLista {
       ? this.pedidoService.listarAtrasados()
       : this.pedidoService.listar({ status: this.status || undefined });
 
-    observable.subscribe((pedidos) => {
-      this.pedidos.set(pedidos);
-      this.carregando.set(false);
+    observable.subscribe({
+      next: (pedidos) => {
+        this.pedidos.set(pedidos);
+        this.erro.set(null);
+        this.carregando.set(false);
+      },
+      error: () => {
+        this.erro.set('Não foi possível carregar os pedidos.');
+        this.carregando.set(false);
+      },
     });
   }
 }

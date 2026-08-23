@@ -29,6 +29,7 @@ export class FornecedoresLista {
   readonly colunas = COLUNAS;
   readonly fornecedores = signal<Fornecedor[]>([]);
   readonly carregando = signal(true);
+  readonly erro = signal<string | null>(null);
 
   readonly podeGerenciar = computed(() => {
     const perfil = this.authService.perfil();
@@ -65,9 +66,16 @@ export class FornecedoresLista {
 
   private carregar(): void {
     this.carregando.set(true);
-    this.fornecedorService.listar().subscribe((fornecedores) => {
-      this.fornecedores.set(fornecedores);
-      this.carregando.set(false);
+    this.fornecedorService.listar().subscribe({
+      next: (fornecedores) => {
+        this.fornecedores.set(fornecedores);
+        this.erro.set(null);
+        this.carregando.set(false);
+      },
+      error: () => {
+        this.erro.set('Não foi possível carregar os fornecedores.');
+        this.carregando.set(false);
+      },
     });
   }
 }

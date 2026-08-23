@@ -1,7 +1,7 @@
 <section class="previsao-panel">
   <div class="previsao-header">
     <h2>Previsão de demanda</h2>
-    <button mat-stroked-button type="button" (click)="gerar()" [disabled]="gerando()">
+    <button mat-stroked-button type="button" (click)="gerar()" *ngIf="podeGerar()" [disabled]="gerando()">
       Gerar previsão
     </button>
   </div>

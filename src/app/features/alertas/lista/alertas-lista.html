@@ -46,6 +46,10 @@
     <p>Carregando…</p>
   </ng-container>
   <ng-template #conteudoAlertas>
+    <ng-container *ngIf="erro(); else listaAlertas">
+      <p class="erro-geral">{{ erro() }}</p>
+    </ng-container>
+    <ng-template #listaAlertas>
     <table mat-table [dataSource]="alertas()" class="alertas-tabela">
       <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef>Título</th>
@@ -97,5 +101,6 @@
     </table>
 
     <p *ngIf="!alertas().length">Nenhum alerta encontrado.</p>
+    </ng-template>
   </ng-template>
 </div>

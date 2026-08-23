@@ -11,3 +11,8 @@
   --mdc-snackbar-container-color: var(--status-danger);
   --mdc-snackbar-supporting-text-color: #FFFFFF;
 }
+
+.erro-geral {
+  color: var(--status-danger);
+  margin: 0;
+}

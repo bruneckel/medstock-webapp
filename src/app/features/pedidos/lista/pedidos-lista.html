@@ -29,6 +29,10 @@
     <p>Carregando…</p>
   </ng-container>
   <ng-template #conteudoPedidos>
+    <ng-container *ngIf="erro(); else listaPedidos">
+      <p class="erro-geral">{{ erro() }}</p>
+    </ng-container>
+    <ng-template #listaPedidos>
     <table mat-table [dataSource]="pedidos()" class="pedidos-tabela">
       <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef>Código</th>
@@ -69,5 +73,6 @@
     </table>
 
     <p *ngIf="!pedidos().length">Nenhum pedido encontrado.</p>
+    </ng-template>
   </ng-template>
 </div>

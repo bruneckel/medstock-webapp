@@ -52,6 +52,7 @@ export class ItensLista {
   readonly colunas = COLUNAS;
   readonly itens = signal<Item[]>([]);
   readonly carregando = signal(true);
+  readonly erro = signal<string | null>(null);
   readonly totalElementos = signal(0);
   readonly pagina = signal(0);
   readonly tamanho = signal(20);
@@ -125,11 +126,17 @@ export class ItensLista {
     this.carregando.set(true);
 
     if (this.aba() === 'criticos') {
-      this.itemService.listarCriticos().subscribe((itens) => this.aplicarListaSimples(itens));
+      this.itemService.listarCriticos().subscribe({
+        next: (itens) => this.aplicarListaSimples(itens),
+        error: () => this.aplicarErro(),
+      });
       return;
     }
     if (this.aba() === 'vencendo') {
-      this.itemService.listarVencendo().subscribe((itens) => this.aplicarListaSimples(itens));
+      this.itemService.listarVencendo().subscribe({
+        next: (itens) => this.aplicarListaSimples(itens),
+        error: () => this.aplicarErro(),
+      });
       return;
     }
 
@@ -141,16 +148,26 @@ export class ItensLista {
         page: this.pagina(),
         size: this.tamanho(),
       })
-      .subscribe((resposta) => {
-        this.itens.set(resposta.conteudo);
-        this.totalElementos.set(resposta.totalElementos);
-        this.carregando.set(false);
+      .subscribe({
+        next: (resposta) => {
+          this.itens.set(resposta.conteudo);
+          this.totalElementos.set(resposta.totalElementos);
+          this.erro.set(null);
+          this.carregando.set(false);
+        },
+        error: () => this.aplicarErro(),
       });
   }
 
   private aplicarListaSimples(itens: Item[]): void {
     this.itens.set(itens);
     this.totalElementos.set(itens.length);
+    this.erro.set(null);
+    this.carregando.set(false);
+  }
+
+  private aplicarErro(): void {
+    this.erro.set('Não foi possível carregar os itens.');
     this.carregando.set(false);
   }
 }

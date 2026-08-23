@@ -42,6 +42,7 @@ export class AlertasLista {
   readonly alertas = signal<Alerta[]>([]);
   readonly carregando = signal(true);
   readonly gerando = signal(false);
+  readonly erro = signal<string | null>(null);
 
   tipo: TipoAlerta | '' = '';
   severidade: SeveridadeAlerta | '' = '';
@@ -129,9 +130,16 @@ export class AlertasLista {
         severidade: this.severidade || undefined,
         status: this.status || undefined,
       })
-      .subscribe((alertas) => {
-        this.alertas.set(alertas);
-        this.carregando.set(false);
+      .subscribe({
+        next: (alertas) => {
+          this.alertas.set(alertas);
+          this.erro.set(null);
+          this.carregando.set(false);
+        },
+        error: () => {
+          this.erro.set('Não foi possível carregar os alertas.');
+          this.carregando.set(false);
+        },
       });
   }
 }
