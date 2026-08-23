@@ -1,67 +1,85 @@
-<form #formulario="ngForm" class="usuario-form" (ngSubmit)="criar(formulario)" novalidate>
+<form #formulario="ngForm" class="usuario-form form-card" (ngSubmit)="criar(formulario)" novalidate>
   <h1>Provisionar usuário institucional</h1>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Nome completo</mat-label>
-    <input matInput name="nome" [(ngModel)]="nome" required minlength="3" maxlength="120" />
-    @if (errosDeCampo()['nome']) {
-      <mat-error>{{ errosDeCampo()['nome'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-section-title">Credenciais</div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>E-mail institucional</mat-label>
-    <input matInput type="email" name="email" [(ngModel)]="email" required email />
-    @if (errosDeCampo()['email']) {
-      <mat-error>{{ errosDeCampo()['email'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome completo</mat-label>
+      <input matInput name="nome" [(ngModel)]="nome" required minlength="3" maxlength="120" />
+      @if (errosDeCampo()['nome']) {
+        <mat-error>{{ errosDeCampo()['nome'] }}</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Senha provisória</mat-label>
-    <input matInput type="password" name="senha" [(ngModel)]="senha" required minlength="8" />
-    @if (errosDeCampo()['senha']) {
-      <mat-error>{{ errosDeCampo()['senha'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail institucional</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="email" required email />
+      @if (errosDeCampo()['email']) {
+        <mat-error>{{ errosDeCampo()['email'] }}</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Matrícula (opcional, gerada se vazia)</mat-label>
-    <input matInput name="matricula" [(ngModel)]="matricula" placeholder="EN-2026-00123" />
-    @if (errosDeCampo()['matricula']) {
-      <mat-error>{{ errosDeCampo()['matricula'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Senha provisória</mat-label>
+      <input matInput type="password" name="senha" [(ngModel)]="senha" required minlength="8" />
+      @if (errosDeCampo()['senha']) {
+        <mat-error>{{ errosDeCampo()['senha'] }}</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Departamento</mat-label>
-    <input matInput name="departamento" [(ngModel)]="departamento" />
-  </mat-form-field>
+  <div class="form-section-title">Dados institucionais</div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Cargo</mat-label>
-    <input matInput name="cargo" [(ngModel)]="cargo" />
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Matrícula (opcional, gerada se vazia)</mat-label>
+      <input matInput name="matricula" [(ngModel)]="matricula" placeholder="EN-2026-00123" />
+      @if (errosDeCampo()['matricula']) {
+        <mat-error>{{ errosDeCampo()['matricula'] }}</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Departamento</mat-label>
+      <input matInput name="departamento" [(ngModel)]="departamento" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Registro profissional</mat-label>
-    <input matInput name="registroProfissional" [(ngModel)]="registroProfissional" />
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Cargo</mat-label>
+      <input matInput name="cargo" [(ngModel)]="cargo" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Registro profissional</mat-label>
+      <input matInput name="registroProfissional" [(ngModel)]="registroProfissional" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Hospital</mat-label>
-    <input matInput name="hospital" [(ngModel)]="hospital" />
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Hospital</mat-label>
+      <input matInput name="hospital" [(ngModel)]="hospital" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Perfil</mat-label>
-    <mat-select name="perfil" [(ngModel)]="perfil" required>
-      <mat-option value="ADMIN">Admin</mat-option>
-      <mat-option value="GESTOR">Gestor</mat-option>
-      <mat-option value="FARMACEUTICO">Farmacêutico</mat-option>
-      <mat-option value="ENFERMEIRO">Enfermeiro</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="form-section-title">Acesso</div>
+
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Perfil</mat-label>
+      <mat-select name="perfil" [(ngModel)]="perfil" required>
+        <mat-option value="ADMIN">Admin</mat-option>
+        <mat-option value="GESTOR">Gestor</mat-option>
+        <mat-option value="FARMACEUTICO">Farmacêutico</mat-option>
+        <mat-option value="ENFERMEIRO">Enfermeiro</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid || carregando()">
     @if (carregando()) {
