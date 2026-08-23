@@ -18,6 +18,7 @@ import { extrairMensagemDeErro } from '../../../core/http/erro-api.util';
 import { Item, StatusItem } from '../../../core/models';
 import { StatusTag } from '../../../shared/components/status-tag/status-tag';
 import { ConfirmDialog } from '../../../shared/components/confirm-dialog/confirm-dialog';
+import { AjusteQuantidadeDialog } from '../ajuste-quantidade/ajuste-quantidade-dialog';
 
 type Aba = 'todos' | 'criticos' | 'vencendo';
 
@@ -107,6 +108,16 @@ export class ItensLista {
         },
         error: (erro: unknown) => this.snackbar.erro(extrairMensagemDeErro(erro)),
       });
+    });
+  }
+
+  ajustarQuantidade(item: Item): void {
+    const dialogRef = this.dialog.open(AjusteQuantidadeDialog, { data: { item } });
+    dialogRef.afterClosed().subscribe((itemAtualizado: Item | undefined) => {
+      if (itemAtualizado) {
+        this.snackbar.sucesso('Quantidade ajustada.');
+        this.carregar();
+      }
     });
   }
 
