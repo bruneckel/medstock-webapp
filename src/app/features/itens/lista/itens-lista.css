@@ -1,0 +1,19 @@
+.itens-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.itens-filtros {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.itens-tabela {
+  width: 100%;
+  background: var(--mat-sys-surface-container);
+}

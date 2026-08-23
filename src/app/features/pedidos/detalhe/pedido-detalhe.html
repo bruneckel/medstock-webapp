@@ -1,0 +1,60 @@
+<div class="pedido-detalhe">
+  <ng-container *ngIf="carregando(); else conteudoPedido">
+    <p>Carregando…</p>
+  </ng-container>
+  <ng-template #conteudoPedido>
+    <ng-container *ngIf="erro(); else detalhePedido">
+      <p class="erro-geral">{{ erro() }}</p>
+    </ng-container>
+    <ng-template #detalhePedido>
+    <ng-container *ngIf="pedido() as pedidoAtual">
+      <div class="pedido-detalhe-header">
+        <h1>Pedido {{ pedidoAtual.codigo }}</h1>
+        <app-status-tag [status]="pedidoAtual.status" />
+      </div>
+
+      <dl class="pedido-info">
+        <dt>Fornecedor</dt>
+        <dd>{{ nomeFornecedor(pedidoAtual.fornecedorId) }}</dd>
+        <dt>Previsão de entrega</dt>
+        <dd>{{ pedidoAtual.etaPrevista | date: 'dd/MM/yyyy HH:mm' }}</dd>
+        <dt>Valor total</dt>
+        <dd>{{ pedidoAtual.valorTotal | currency: 'BRL' }}</dd>
+      </dl>
+
+      <p *ngIf="pedidoAtual.slaExcedido" class="pedido-atrasado">SLA excedido.</p>
+
+      <h2>Itens do pedido</h2>
+      <ul class="pedido-itens">
+        <li *ngFor="let linha of pedidoAtual.itens">
+          {{ linha.quantidade }}× {{ nomeItem(linha.itemId) }} — {{ linha.valorUnitario | currency: 'BRL' }}
+        </li>
+      </ul>
+
+      <div class="pedido-acoes">
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="confirmar()"
+          *ngIf="podeConfirmar() && pedidoAtual.status !== 'ENTREGUE'"
+          [disabled]="confirmando()"
+        >
+          Confirmar recebimento
+        </button>
+
+        <div class="pedido-status-form" *ngIf="podeMudarStatus()">
+          <mat-form-field appearance="outline">
+            <mat-label>Novo status</mat-label>
+            <mat-select [(ngModel)]="novoStatus">
+              <mat-option *ngFor="let status of statusDisponiveis" [value]="status">{{ status }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-stroked-button (click)="mudarStatus()" [disabled]="!novoStatus || atualizandoStatus()">
+            Atualizar status
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    </ng-template>
+  </ng-template>
+</div>

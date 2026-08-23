@@ -1,0 +1,67 @@
+<form #formulario="ngForm" class="pedido-form" (ngSubmit)="salvar(formulario)" novalidate>
+  <h1>Novo pedido</h1>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fornecedor</mat-label>
+    <mat-select name="fornecedorId" [(ngModel)]="fornecedorId" required>
+      <mat-option *ngFor="let fornecedor of fornecedores()" [value]="fornecedor.id" [disabled]="!fornecedor.ativo">
+        {{ fornecedor.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Previsão de entrega</mat-label>
+    <input matInput type="datetime-local" name="etaPrevista" [(ngModel)]="etaPrevista" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>SLA (horas) — opcional, herda do fornecedor</mat-label>
+    <input matInput type="number" name="slaHoras" [(ngModel)]="slaHoras" min="1" />
+  </mat-form-field>
+
+  <h2>Itens</h2>
+  <div class="pedido-linha" *ngFor="let linha of itensPedido; let i = index">
+    <mat-form-field appearance="outline">
+      <mat-label>Item</mat-label>
+      <mat-select [name]="'itemId-' + i" [(ngModel)]="linha.itemId" required>
+        <mat-option *ngFor="let item of itensDisponiveis()" [value]="item.id">{{ item.nome }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Quantidade</mat-label>
+      <input matInput type="number" [name]="'quantidade-' + i" [(ngModel)]="linha.quantidade" required min="1" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Valor unitário</mat-label>
+      <input matInput type="number" [name]="'valorUnitario-' + i" [(ngModel)]="linha.valorUnitario" min="0" step="0.01" />
+    </mat-form-field>
+
+    <button
+      mat-icon-button
+      type="button"
+      (click)="removerLinha(i)"
+      *ngIf="itensPedido.length > 1"
+      aria-label="Remover item"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <button mat-stroked-button type="button" (click)="adicionarLinha()">
+    <mat-icon>add</mat-icon>
+    Adicionar item
+  </button>
+
+  <p *ngIf="erroGeral()" class="erro-geral">{{ erroGeral() }}</p>
+
+  <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid || carregando()">
+    @if (carregando()) {
+      <mat-spinner diameter="20" />
+    } @else {
+      Criar pedido
+    }
+  </button>
+</form>

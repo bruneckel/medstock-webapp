@@ -1,0 +1,36 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav mode="side" opened class="shell-sidenav">
+    <div class="shell-brand">Smart HAS</div>
+    <mat-nav-list>
+      <ng-container *ngFor="let item of itensDeNavegacao">
+        <a *ngIf="podeVer(item)" mat-list-item [routerLink]="item.rota">
+          <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
+          <span matListItemTitle>{{ item.rotulo }}</span>
+        </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="shell-topbar">
+      <span class="shell-spacer"></span>
+      @if (usuario(); as usuarioAtual) {
+        <button mat-button [matMenuTriggerFor]="menuUsuario">
+          {{ usuarioAtual.nome }}
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menuUsuario="matMenu">
+          <div class="shell-perfil">{{ usuarioAtual.perfil }}</div>
+          <button mat-menu-item (click)="sair()">
+            <mat-icon>logout</mat-icon>
+            Sair
+          </button>
+        </mat-menu>
+      }
+    </mat-toolbar>
+
+    <main class="shell-content">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

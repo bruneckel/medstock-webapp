@@ -1,0 +1,18 @@
+.previsao-panel {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--mat-sys-surface-container);
+}
+
+.previsao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.previsao-recomendacao {
+  font-style: italic;
+  color: var(--mat-sys-on-surface-variant);
+}
