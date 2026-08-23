@@ -13,6 +13,6 @@
 }
 
 .erro-geral {
-  color: var(--status-danger);
+  color: var(--status-danger-on-dark);
   margin: 0;
 }
