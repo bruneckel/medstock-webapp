@@ -3,7 +3,7 @@
     <h1>Criar conta</h1>
     <p>Cadastro institucional — perfil Farmacêutico é atribuído automaticamente</p>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Nome completo</mat-label>
       <input matInput type="text" name="nome" [(ngModel)]="nome" required minlength="3" />
       @if (errosDeCampo()['nome']) {
@@ -11,7 +11,7 @@
       }
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>E-mail institucional</mat-label>
       <input matInput type="email" name="email" [(ngModel)]="email" required email />
       @if (errosDeCampo()['email']) {
@@ -19,7 +19,7 @@
       }
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Senha</mat-label>
       <input matInput type="password" name="senha" [(ngModel)]="senha" required minlength="8" />
       @if (errosDeCampo()['senha']) {

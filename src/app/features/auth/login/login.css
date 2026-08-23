@@ -13,8 +13,9 @@
   width: 100%;
   max-width: 380px;
   padding: 2rem;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   background: var(--mat-sys-surface-container);
+  box-shadow: var(--shadow-card);
 }
 
 .login-card h1 {
