@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth/auth.guard';
+import { adminGuard } from './core/auth/admin.guard';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,11 @@ export const routes: Routes = [
       {
         path: 'admin/alertas',
         loadChildren: () => import('./features/alertas/alertas.routes').then((m) => m.alertasRoutes),
+      },
+      {
+        path: 'admin/usuarios',
+        canMatch: [adminGuard],
+        loadChildren: () => import('./features/usuarios/usuarios.routes').then((m) => m.usuariosRoutes),
       },
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
