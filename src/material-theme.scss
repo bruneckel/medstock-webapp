@@ -11,6 +11,18 @@ html {
   --status-success-bg: #EAF3DE;
   --status-info: #185FA5;
   --status-info-bg: #E6F1FB;
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --radius-button: 12px;
+  --shadow-button-primary: 0 2px 6px rgba(83, 74, 183, .35);
+  --transition-collapse: 200ms ease;
+  --mat-form-field-filled-container-shape: var(--radius-control);
+  --mat-form-field-filled-active-indicator-color: transparent;
+  --mat-dialog-container-shape: var(--radius-card);
+  --mat-button-filled-container-shape: var(--radius-button);
+  --mat-button-outlined-container-shape: var(--radius-button);
+  --mat-button-text-container-shape: var(--radius-button);
+  --mat-button-tonal-container-shape: var(--radius-button);
 }
 
 html.dark {
@@ -33,6 +45,9 @@ html.dark {
   ));
 
   --status-danger-text: #FF8A85;
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, .28);
+  --field-fill: #262626;
+  --mat-form-field-filled-container-color: var(--field-fill);
 }
 
 html.light {
@@ -55,6 +70,9 @@ html.light {
   ));
 
   --status-danger-text: #B3211F;
+  --shadow-card: 0 4px 12px rgba(15, 15, 20, .08);
+  --field-fill: #EDE9F8;
+  --mat-form-field-filled-container-color: var(--field-fill);
 }
 
 body {
