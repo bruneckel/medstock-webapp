@@ -1,87 +1,105 @@
-<form #formulario="ngForm" class="item-form" (ngSubmit)="salvar(formulario)" novalidate>
+<form #formulario="ngForm" class="item-form form-card" (ngSubmit)="salvar(formulario)" novalidate>
   <h1>{{ idEmEdicao() ? 'Editar item' : 'Novo item' }}</h1>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Nome</mat-label>
-    <input matInput name="nome" [(ngModel)]="nome" required minlength="2" maxlength="150" />
-    @if (errosDeCampo()['nome']) {
-      <mat-error>{{ errosDeCampo()['nome'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-section-title">Identificação</div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Descrição</mat-label>
-    <textarea matInput name="descricao" [(ngModel)]="descricao" maxlength="500"></textarea>
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput name="nome" [(ngModel)]="nome" required minlength="2" maxlength="150" />
+      @if (errosDeCampo()['nome']) {
+        <mat-error>{{ errosDeCampo()['nome'] }}</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Categoria</mat-label>
-    <input matInput name="categoria" [(ngModel)]="categoria" required />
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Categoria</mat-label>
+      <input matInput name="categoria" [(ngModel)]="categoria" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Unidade de medida</mat-label>
+      <input matInput name="unidadeMedida" [(ngModel)]="unidadeMedida" required />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Unidade de medida</mat-label>
-    <input matInput name="unidadeMedida" [(ngModel)]="unidadeMedida" required />
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput name="descricao" [(ngModel)]="descricao" maxlength="500"></textarea>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Quantidade atual</mat-label>
-    <input matInput type="number" name="quantidadeAtual" [(ngModel)]="quantidadeAtual" required min="0" />
-    @if (errosDeCampo()['quantidadeAtual']) {
-      <mat-error>{{ errosDeCampo()['quantidadeAtual'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-section-title">Estoque</div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Quantidade mínima</mat-label>
-    <input matInput type="number" name="quantidadeMinima" [(ngModel)]="quantidadeMinima" required min="0" />
-    @if (errosDeCampo()['quantidadeMinima']) {
-      <mat-error>{{ errosDeCampo()['quantidadeMinima'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Quantidade atual</mat-label>
+      <input matInput type="number" name="quantidadeAtual" [(ngModel)]="quantidadeAtual" required min="0" />
+      @if (errosDeCampo()['quantidadeAtual']) {
+        <mat-error>{{ errosDeCampo()['quantidadeAtual'] }}</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Quantidade mínima</mat-label>
+      <input matInput type="number" name="quantidadeMinima" [(ngModel)]="quantidadeMinima" required min="0" />
+      @if (errosDeCampo()['quantidadeMinima']) {
+        <mat-error>{{ errosDeCampo()['quantidadeMinima'] }}</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Quantidade máxima</mat-label>
+      <input matInput type="number" name="quantidadeMaxima" [(ngModel)]="quantidadeMaxima" min="0" />
+      @if (errosDeCampo()['quantidadeMaxima']) {
+        <mat-error>{{ errosDeCampo()['quantidadeMaxima'] }}</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Quantidade máxima</mat-label>
-    <input matInput type="number" name="quantidadeMaxima" [(ngModel)]="quantidadeMaxima" min="0" />
-    @if (errosDeCampo()['quantidadeMaxima']) {
-      <mat-error>{{ errosDeCampo()['quantidadeMaxima'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Local de armazenamento</mat-label>
+      <input matInput name="localArmazenamento" [(ngModel)]="localArmazenamento" />
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Local de armazenamento</mat-label>
-    <input matInput name="localArmazenamento" [(ngModel)]="localArmazenamento" />
-  </mat-form-field>
+  <div class="form-section-title">Fornecimento e validade</div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Fornecedor</mat-label>
-    <mat-select name="fornecedorId" [(ngModel)]="fornecedorId">
-      <mat-option *ngFor="let fornecedor of fornecedores()" [value]="fornecedor.id">
-        {{ fornecedor.nome }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Fornecedor</mat-label>
+      <mat-select name="fornecedorId" [(ngModel)]="fornecedorId">
+        <mat-option *ngFor="let fornecedor of fornecedores()" [value]="fornecedor.id">
+          {{ fornecedor.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Tipo</mat-label>
-    <mat-select name="tipo" [(ngModel)]="tipo">
-      <mat-option value="PRIMORDIAL">Primordial</mat-option>
-      <mat-option value="ESSENCIAL_BAIXA_DEMANDA">Essencial de baixa demanda</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <mat-select name="tipo" [(ngModel)]="tipo">
+        <mat-option value="PRIMORDIAL">Primordial</mat-option>
+        <mat-option value="ESSENCIAL_BAIXA_DEMANDA">Essencial de baixa demanda</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Lote</mat-label>
-    <input matInput name="lote" [(ngModel)]="lote" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Validade</mat-label>
-    <input matInput type="date" name="dataValidade" [(ngModel)]="dataValidade" required />
-    @if (errosDeCampo()['dataValidade']) {
-      <mat-error>{{ errosDeCampo()['dataValidade'] }}</mat-error>
-    }
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Lote</mat-label>
+      <input matInput name="lote" [(ngModel)]="lote" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Validade</mat-label>
+      <input matInput type="date" name="dataValidade" [(ngModel)]="dataValidade" required />
+      @if (errosDeCampo()['dataValidade']) {
+        <mat-error>{{ errosDeCampo()['dataValidade'] }}</mat-error>
+      }
+    </mat-form-field>
+  </div>
 
   <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid || carregando()">
     @if (carregando()) {
