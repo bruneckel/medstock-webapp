@@ -1,0 +1,70 @@
+<div class="fornecedores-lista">
+  <div class="fornecedores-header">
+    <h1>Fornecedores</h1>
+    <button mat-flat-button color="primary" routerLink="novo" *ngIf="podeGerenciar()">
+      <mat-icon>add</mat-icon>
+      Novo fornecedor
+    </button>
+  </div>
+
+  @if (carregando()) {
+    <p>Carregando…</p>
+  } @else {
+    <table mat-table [dataSource]="fornecedores()" class="fornecedores-tabela">
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let fornecedor">{{ fornecedor.nome }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cnpj">
+        <th mat-header-cell *matHeaderCellDef>CNPJ</th>
+        <td mat-cell *matCellDef="let fornecedor">{{ fornecedor.cnpj }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>E-mail</th>
+        <td mat-cell *matCellDef="let fornecedor">{{ fornecedor.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="slaHoras">
+        <th mat-header-cell *matHeaderCellDef>SLA (h)</th>
+        <td mat-cell *matCellDef="let fornecedor">{{ fornecedor.slaHoras }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ativo">
+        <th mat-header-cell *matHeaderCellDef>Situação</th>
+        <td mat-cell *matCellDef="let fornecedor">
+          <span
+            class="fornecedor-situacao"
+            [class.fornecedor-situacao--ativo]="fornecedor.ativo"
+            [class.fornecedor-situacao--inativo]="!fornecedor.ativo"
+          >
+            {{ fornecedor.ativo ? 'Ativo' : 'Inativo' }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let fornecedor">
+          <a mat-icon-button [routerLink]="[fornecedor.id]" *ngIf="podeGerenciar()" aria-label="Editar fornecedor">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button
+            mat-icon-button
+            (click)="inativar(fornecedor)"
+            *ngIf="podeInativar() && fornecedor.ativo"
+            aria-label="Inativar fornecedor"
+          >
+            <mat-icon>block</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+
+    <p *ngIf="!fornecedores().length">Nenhum fornecedor cadastrado.</p>
+  }
+</div>

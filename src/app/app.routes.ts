@@ -23,6 +23,10 @@ export const routes: Routes = [
         path: 'admin/itens',
         loadChildren: () => import('./features/itens/itens.routes').then((m) => m.itensRoutes),
       },
+      {
+        path: 'admin/fornecedores',
+        loadChildren: () => import('./features/fornecedores/fornecedores.routes').then((m) => m.fornecedoresRoutes),
+      },
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },
