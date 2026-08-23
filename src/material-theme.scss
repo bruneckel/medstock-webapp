@@ -2,6 +2,18 @@
 
 html {
   height: 100%;
+
+  --status-danger: #B3211F;
+  --status-danger-bg: #FCEBEB;
+  --status-warning: #8A5A00;
+  --status-warning-bg: #FAEEDA;
+  --status-success: #3B6D11;
+  --status-success-bg: #EAF3DE;
+  --status-info: #185FA5;
+  --status-info-bg: #E6F1FB;
+}
+
+html.dark {
   color-scheme: dark;
   @include mat.theme((
     color: (
@@ -20,15 +32,29 @@ html {
     surface-container: #1E1E1E,
   ));
 
-  --status-danger: #B3211F;
-  --status-danger-bg: #FCEBEB;
-  --status-danger-on-dark: #FF8A85;
-  --status-warning: #8A5A00;
-  --status-warning-bg: #FAEEDA;
-  --status-success: #3B6D11;
-  --status-success-bg: #EAF3DE;
-  --status-info: #185FA5;
-  --status-info-bg: #E6F1FB;
+  --status-danger-text: #FF8A85;
+}
+
+html.light {
+  color-scheme: light;
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+      tertiary: mat.$orange-palette,
+      theme-type: light,
+    ),
+    typography: Roboto,
+    density: 0
+  ), $overrides: (
+    primary: #534AB7,
+    primary-container: #E6E0FF,
+    on-primary: #FFFFFF,
+    on-primary-container: #190864,
+    surface: #FFFBFF,
+    surface-container: #F2EDFA,
+  ));
+
+  --status-danger-text: #B3211F;
 }
 
 body {

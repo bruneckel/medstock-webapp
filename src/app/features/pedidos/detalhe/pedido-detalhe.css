@@ -12,7 +12,7 @@
 }
 
 .pedido-atrasado {
-  color: var(--status-danger-on-dark);
+  color: var(--status-danger-text);
   font-weight: 600;
 }
 

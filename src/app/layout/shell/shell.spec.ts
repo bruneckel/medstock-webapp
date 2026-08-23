@@ -3,12 +3,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter, Router } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ThemeTransitionService } from '@brustack/angular-theme-transitions';
 import { Shell } from './shell';
 import { AuthService } from '../../core/auth/auth.service';
 
 describe('Shell', () => {
   let authService: AuthService;
   let router: Router;
+  let theme: ThemeTransitionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,6 +24,7 @@ describe('Shell', () => {
     });
     authService = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
+    theme = TestBed.inject(ThemeTransitionService);
   });
 
   it('hides the Usuários nav item for a non-ADMIN profile', () => {
@@ -51,5 +54,16 @@ describe('Shell', () => {
 
     expect(logoutSpy).toHaveBeenCalled();
     expect(navigateSpy).toHaveBeenCalledWith('/login');
+  });
+
+  it('toggles the theme when the theme button is clicked', () => {
+    const toggleSpy = vi.spyOn(theme, 'toggleTheme').mockResolvedValue();
+    const fixture = TestBed.createComponent(Shell);
+    fixture.detectChanges();
+
+    const botaoTema = fixture.nativeElement.querySelectorAll('button.mat-mdc-icon-button')[0] as HTMLButtonElement;
+    botaoTema.click();
+
+    expect(toggleSpy).toHaveBeenCalled();
   });
 });

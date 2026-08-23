@@ -14,6 +14,14 @@
   <mat-sidenav-content>
     <mat-toolbar class="shell-topbar">
       <span class="shell-spacer"></span>
+      <button
+        mat-icon-button
+        [disabled]="theme.isAnimating()"
+        (click)="theme.toggleTheme($event)"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro'"
+      >
+        <mat-icon>{{ theme.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
       @if (usuario(); as usuarioAtual) {
         <button mat-button [matMenuTriggerFor]="menuUsuario">
           {{ usuarioAtual.nome }}

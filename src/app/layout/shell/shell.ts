@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ThemeTransitionService } from '@brustack/angular-theme-transitions';
 import { AuthService } from '../../core/auth/auth.service';
 import { PerfilUsuario } from '../../core/models';
 
@@ -45,6 +46,7 @@ const ITENS_DE_NAVEGACAO: ItemDeNavegacao[] = [
 export class Shell {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  protected readonly theme = inject(ThemeTransitionService);
 
   readonly usuario = this.authService.usuario;
   readonly itensDeNavegacao = ITENS_DE_NAVEGACAO;
