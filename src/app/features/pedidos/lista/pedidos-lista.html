@@ -33,6 +33,7 @@
       <p class="erro-geral">{{ erro() }}</p>
     </ng-container>
     <ng-template #listaPedidos>
+    <div class="pedidos-tabela-card">
     <table mat-table [dataSource]="pedidos()" class="pedidos-tabela">
       <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef>Código</th>
@@ -73,6 +74,7 @@
     </table>
 
     <p *ngIf="!pedidos().length">Nenhum pedido encontrado.</p>
+    </div>
     </ng-template>
   </ng-template>
 </div>

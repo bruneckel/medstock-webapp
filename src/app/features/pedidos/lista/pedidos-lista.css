@@ -10,9 +10,20 @@
   gap: 1.5rem;
   align-items: center;
   margin-bottom: 1rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-card);
+  background: var(--mat-sys-surface-container);
+  box-shadow: var(--shadow-card);
+}
+
+.pedidos-tabela-card {
+  border-radius: var(--radius-card);
+  background: var(--mat-sys-surface-container);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
 }
 
 .pedidos-tabela {
   width: 100%;
-  background: var(--mat-sys-surface-container);
+  background: transparent;
 }
