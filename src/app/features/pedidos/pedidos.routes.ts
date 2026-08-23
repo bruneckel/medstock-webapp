@@ -5,4 +5,8 @@ export const pedidosRoutes: Routes = [
     path: '',
     loadComponent: () => import('./lista/pedidos-lista').then((m) => m.PedidosLista),
   },
+  {
+    path: 'novo',
+    loadComponent: () => import('./form/pedido-form').then((m) => m.PedidoForm),
+  },
 ];
