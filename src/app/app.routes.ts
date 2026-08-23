@@ -27,6 +27,10 @@ export const routes: Routes = [
         path: 'admin/fornecedores',
         loadChildren: () => import('./features/fornecedores/fornecedores.routes').then((m) => m.fornecedoresRoutes),
       },
+      {
+        path: 'admin/pedidos',
+        loadChildren: () => import('./features/pedidos/pedidos.routes').then((m) => m.pedidosRoutes),
+      },
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },
