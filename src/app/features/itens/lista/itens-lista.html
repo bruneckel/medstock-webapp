@@ -45,6 +45,7 @@
       <p class="erro-geral">{{ erro() }}</p>
     </ng-container>
     <ng-template #listaItens>
+      <div class="itens-tabela-card">
       <table mat-table [dataSource]="itens()" class="itens-tabela">
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef>Nome</th>
@@ -95,6 +96,7 @@
         [pageSizeOptions]="[10, 20, 50]"
         (page)="mudarPagina($event)"
       />
+      </div>
     </ng-template>
   </ng-template>
 </div>

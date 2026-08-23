@@ -11,9 +11,20 @@
   align-items: flex-start;
   margin: 1rem 0;
   flex-wrap: wrap;
+  padding: 1.25rem;
+  border-radius: var(--radius-card);
+  background: var(--mat-sys-surface-container);
+  box-shadow: var(--shadow-card);
+}
+
+.itens-tabela-card {
+  border-radius: var(--radius-card);
+  background: var(--mat-sys-surface-container);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
 }
 
 .itens-tabela {
   width: 100%;
-  background: var(--mat-sys-surface-container);
+  background: transparent;
 }
