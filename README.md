@@ -1,3 +1,36 @@
+# Smart HAS — Painel Administrativo (medstock-webapp)
+
+Painel web em Angular para o sistema de estoque hospitalar Smart HAS,
+consumindo a mesma API REST usada pelo aplicativo móvel
+(`HospitalManagement_Back`, Spring Boot, JWT).
+
+## Rodando localmente
+
+1. Suba a API primeiro: em `HospitalManagement_Back`, rode `./mvnw spring-boot:run`
+   (porta padrão `8080`). O CORS já libera `http://localhost:4200`.
+2. Neste projeto: `npm install` e depois `npm start` (equivalente a `ng serve`,
+   porta `4200`).
+3. Acesse `http://localhost:4200`, cadastre uma conta em `/registro` com um
+   e-mail de domínio institucional (lista em `application.yml` da API) e senha
+   com 8+ caracteres, depois entre em `/login`.
+
+Para apontar para uma API em outro host/porta, edite `apiUrl` em
+`src/environments/environment.development.ts` (dev) ou `environment.ts`
+(build de produção).
+
+## Estrutura
+
+- `src/app/core` — modelos TS, serviços HTTP (um por recurso da API),
+  autenticação (guards, interceptor), utilitários de erro.
+- `src/app/layout/shell` — casca com topbar e menu lateral, sensível ao
+  perfil do usuário logado.
+- `src/app/features` — uma pasta por tela (dashboard, itens, pedidos,
+  fornecedores, alertas, usuários), cada uma com seus próprios testes.
+- `src/app/shared/components` — componentes reutilizados entre telas
+  (tag de status, diálogo de confirmação, wrapper de gráfico).
+
+---
+
 # MedstockWebapp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.5.
