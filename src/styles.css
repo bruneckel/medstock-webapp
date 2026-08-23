@@ -30,17 +30,18 @@
 
 .form-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.875rem;
   align-items: flex-start;
 }
 
 .form-row > mat-form-field {
   flex: 1;
-  min-width: 0;
+  min-width: 12rem;
 }
 
 .form-section-title {
-  color: var(--mat-sys-primary);
+  color: var(--accent-text);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -50,7 +51,7 @@
   border-bottom: 1px solid var(--mat-sys-outline-variant);
 }
 
-.form-section-title:first-of-type {
+.form-card > :first-child + .form-section-title {
   margin-top: 0;
 }
 

@@ -25,6 +25,10 @@ html {
   --mat-button-tonal-container-shape: var(--radius-button);
 }
 
+.mdc-text-field--filled {
+  box-shadow: inset 0 0 0 1px var(--field-border);
+}
+
 html.dark {
   color-scheme: dark;
   @include mat.theme((
@@ -47,6 +51,8 @@ html.dark {
   --status-danger-text: #FF8A85;
   --shadow-card: 0 4px 12px rgba(0, 0, 0, .28);
   --field-fill: #262626;
+  --field-border: #8A8393;
+  --accent-text: #D5BAFF;
   --mat-form-field-filled-container-color: var(--field-fill);
 }
 
@@ -72,6 +78,8 @@ html.light {
   --status-danger-text: #B3211F;
   --shadow-card: 0 4px 12px rgba(15, 15, 20, .08);
   --field-fill: #EDE9F8;
+  --field-border: #79738A;
+  --accent-text: var(--mat-sys-primary);
   --mat-form-field-filled-container-color: var(--field-fill);
 }
 

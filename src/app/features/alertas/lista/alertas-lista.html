@@ -8,7 +8,7 @@
   </div>
 
   <div class="alertas-filtros">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Tipo</mat-label>
       <mat-select [(ngModel)]="tipo" (selectionChange)="aplicarFiltros()">
         <mat-option value="">Todos</mat-option>
@@ -21,7 +21,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Severidade</mat-label>
       <mat-select [(ngModel)]="severidade" (selectionChange)="aplicarFiltros()">
         <mat-option value="">Todas</mat-option>
@@ -31,7 +31,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
       <mat-select [(ngModel)]="status" (selectionChange)="aplicarFiltros()">
         <mat-option value="">Todos</mat-option>

@@ -1,7 +1,7 @@
 <form #formulario="ngForm" class="item-form form-card" (ngSubmit)="salvar(formulario)" novalidate>
   <h1>{{ idEmEdicao() ? 'Editar item' : 'Novo item' }}</h1>
 
-  <div class="form-section-title">Identificação</div>
+  <h2 class="form-section-title">Identificação</h2>
 
   <div class="form-row">
     <mat-form-field appearance="fill">
@@ -31,7 +31,7 @@
     </mat-form-field>
   </div>
 
-  <div class="form-section-title">Estoque</div>
+  <h2 class="form-section-title">Estoque</h2>
 
   <div class="form-row">
     <mat-form-field appearance="fill">
@@ -64,7 +64,7 @@
     </mat-form-field>
   </div>
 
-  <div class="form-section-title">Fornecimento e validade</div>
+  <h2 class="form-section-title">Fornecimento e validade</h2>
 
   <div class="form-row">
     <mat-form-field appearance="fill">

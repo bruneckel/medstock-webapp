@@ -38,7 +38,7 @@
 
 .shell-nav-item--ativo,
 .shell-nav-item--ativo mat-icon {
-  color: var(--mat-sys-primary);
+  color: var(--accent-text);
 }
 
 .shell-spacer {

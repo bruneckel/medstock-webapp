@@ -14,12 +14,12 @@
   </mat-tab-group>
 
   <form class="itens-filtros" *ngIf="aba() === 'todos'" (ngSubmit)="aplicarFiltros()">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Buscar</mat-label>
       <input matInput name="busca" [(ngModel)]="busca" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
       <mat-select name="status" [(ngModel)]="status">
         <mat-option value="">Todos</mat-option>
@@ -29,7 +29,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Categoria</mat-label>
       <input matInput name="categoria" [(ngModel)]="categoria" />
     </mat-form-field>

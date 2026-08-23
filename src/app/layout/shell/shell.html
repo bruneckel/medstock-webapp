@@ -27,6 +27,7 @@
           mat-list-item
           [routerLink]="item.rota"
           routerLinkActive="shell-nav-item--ativo"
+          [attr.aria-label]="item.rotulo"
           (click)="fecharMenuMobile()"
         >
           <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
@@ -41,7 +42,12 @@
   <mat-sidenav-content>
     <mat-toolbar class="shell-topbar">
       @if (isMobile()) {
-        <button mat-icon-button (click)="alternarMenuMobile()" aria-label="Abrir menu">
+        <button
+          mat-icon-button
+          (click)="alternarMenuMobile()"
+          [attr.aria-label]="menuMobileAberto() ? 'Fechar menu' : 'Abrir menu'"
+          [attr.aria-expanded]="menuMobileAberto()"
+        >
           <mat-icon>menu</mat-icon>
         </button>
       }
