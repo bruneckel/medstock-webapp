@@ -1,3 +1,7 @@
+.pedido-detalhe-card {
+  max-width: 720px;
+}
+
 .pedido-detalhe-header {
   display: flex;
   align-items: center;

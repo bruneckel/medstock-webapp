@@ -8,6 +8,7 @@
     </ng-container>
     <ng-template #detalhePedido>
     <ng-container *ngIf="pedido() as pedidoAtual">
+      <div class="pedido-detalhe-card form-card">
       <div class="pedido-detalhe-header">
         <h1>Pedido {{ pedidoAtual.codigo }}</h1>
         <app-status-tag [status]="pedidoAtual.status" />
@@ -43,7 +44,7 @@
         </button>
 
         <div class="pedido-status-form" *ngIf="podeMudarStatus()">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="fill">
             <mat-label>Novo status</mat-label>
             <mat-select [(ngModel)]="novoStatus">
               <mat-option *ngFor="let status of statusDisponiveis" [value]="status">{{ status }}</mat-option>
@@ -53,6 +54,7 @@
             Atualizar status
           </button>
         </div>
+      </div>
       </div>
     </ng-container>
     </ng-template>
