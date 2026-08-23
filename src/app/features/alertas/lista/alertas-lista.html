@@ -1,0 +1,101 @@
+<div class="alertas-lista">
+  <div class="alertas-header">
+    <h1>Alertas</h1>
+    <button mat-flat-button color="primary" (click)="gerar()" *ngIf="podeGerenciar()" [disabled]="gerando()">
+      <mat-icon>autorenew</mat-icon>
+      Gerar alertas
+    </button>
+  </div>
+
+  <div class="alertas-filtros">
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <mat-select [(ngModel)]="tipo" (selectionChange)="aplicarFiltros()">
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="ESTOQUE_CRITICO">Estoque crítico</mat-option>
+        <mat-option value="VALIDADE">Validade</mat-option>
+        <mat-option value="ATRASO_ENTREGA">Atraso de entrega</mat-option>
+        <mat-option value="FRAUDE">Fraude</mat-option>
+        <mat-option value="CATASTROFE">Catástrofe</mat-option>
+        <mat-option value="IA">IA</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Severidade</mat-label>
+      <mat-select [(ngModel)]="severidade" (selectionChange)="aplicarFiltros()">
+        <mat-option value="">Todas</mat-option>
+        <mat-option value="CRITICO">Crítico</mat-option>
+        <mat-option value="ATENCAO">Atenção</mat-option>
+        <mat-option value="INFO">Info</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="status" (selectionChange)="aplicarFiltros()">
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="ATIVO">Ativo</mat-option>
+        <mat-option value="RESOLVIDO">Resolvido</mat-option>
+        <mat-option value="IGNORADO">Ignorado</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ng-container *ngIf="carregando(); else conteudoAlertas">
+    <p>Carregando…</p>
+  </ng-container>
+  <ng-template #conteudoAlertas>
+    <table mat-table [dataSource]="alertas()" class="alertas-tabela">
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let alerta">{{ alerta.titulo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let alerta">{{ alerta.tipo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="severidade">
+        <th mat-header-cell *matHeaderCellDef>Severidade</th>
+        <td mat-cell *matCellDef="let alerta"><app-status-tag [status]="alerta.severidade" /></td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let alerta"><app-status-tag [status]="alerta.status" /></td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let alerta">
+          <button
+            mat-icon-button
+            (click)="resolver(alerta)"
+            *ngIf="alerta.status === 'ATIVO'"
+            aria-label="Resolver alerta"
+          >
+            <mat-icon>check_circle</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="ignorar(alerta)"
+            *ngIf="alerta.status === 'ATIVO'"
+            aria-label="Ignorar alerta"
+          >
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+          <button mat-icon-button (click)="remover(alerta)" *ngIf="podeRemover()" aria-label="Remover alerta">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+
+    <p *ngIf="!alertas().length">Nenhum alerta encontrado.</p>
+  </ng-template>
+</div>

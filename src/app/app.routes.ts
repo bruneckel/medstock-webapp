@@ -31,6 +31,10 @@ export const routes: Routes = [
         path: 'admin/pedidos',
         loadChildren: () => import('./features/pedidos/pedidos.routes').then((m) => m.pedidosRoutes),
       },
+      {
+        path: 'admin/alertas',
+        loadChildren: () => import('./features/alertas/alertas.routes').then((m) => m.alertasRoutes),
+      },
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },
