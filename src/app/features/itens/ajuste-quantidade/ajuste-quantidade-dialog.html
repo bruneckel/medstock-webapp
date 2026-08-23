@@ -3,18 +3,20 @@
   <mat-dialog-content>
     <p>Quantidade atual: {{ data.item.quantidadeAtual }} {{ data.item.unidadeMedida }}</p>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Tipo de movimentação</mat-label>
-      <mat-select name="tipo" [(ngModel)]="tipo" required>
-        <mat-option value="ENTRADA">Entrada</mat-option>
-        <mat-option value="SAIDA">Saída</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de movimentação</mat-label>
+        <mat-select name="tipo" [(ngModel)]="tipo" required>
+          <mat-option value="ENTRADA">Entrada</mat-option>
+          <mat-option value="SAIDA">Saída</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Quantidade</mat-label>
-      <input matInput type="number" name="quantidade" [(ngModel)]="quantidade" required min="1" />
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Quantidade</mat-label>
+        <input matInput type="number" name="quantidade" [(ngModel)]="quantidade" required min="1" />
+      </mat-form-field>
+    </div>
 
     <p *ngIf="erroGeral()" class="erro-geral">{{ erroGeral() }}</p>
   </mat-dialog-content>
