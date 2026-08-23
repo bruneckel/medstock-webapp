@@ -1,0 +1,9 @@
+.pedido-linha {
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.pedido-linha-remover {
+  flex: 0 0 auto;
+  margin-top: 0.375rem;
+}

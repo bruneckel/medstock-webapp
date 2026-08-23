@@ -34,6 +34,7 @@ interface LinhaItemPedido {
     MatProgressSpinnerModule,
   ],
   templateUrl: './pedido-form.html',
+  styleUrl: './pedido-form.css',
 })
 export class PedidoForm {
   private readonly pedidoService = inject(PedidoService);
