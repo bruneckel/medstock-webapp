@@ -25,9 +25,10 @@
     <mat-checkbox [(ngModel)]="somenteAtrasados" (change)="aplicarFiltros()">Somente atrasados</mat-checkbox>
   </div>
 
-  @if (carregando()) {
+  <ng-container *ngIf="carregando(); else conteudoPedidos">
     <p>Carregando…</p>
-  } @else {
+  </ng-container>
+  <ng-template #conteudoPedidos>
     <table mat-table [dataSource]="pedidos()" class="pedidos-tabela">
       <ng-container matColumnDef="codigo">
         <th mat-header-cell *matHeaderCellDef>Código</th>
@@ -68,5 +69,5 @@
     </table>
 
     <p *ngIf="!pedidos().length">Nenhum pedido encontrado.</p>
-  }
+  </ng-template>
 </div>
