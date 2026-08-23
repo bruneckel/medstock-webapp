@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -10,6 +13,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ThemeTransitionService } from '@brustack/angular-theme-transitions';
 import { AuthService } from '../../core/auth/auth.service';
 import { PerfilUsuario } from '../../core/models';
+
+const CHAVE_SIDENAV_COLAPSADO = 'medstock.sidenav-colapsado';
 
 interface ItemDeNavegacao {
   rota: string;
@@ -32,6 +37,7 @@ const ITENS_DE_NAVEGACAO: ItemDeNavegacao[] = [
   imports: [
     CommonModule,
     RouterLink,
+    RouterLinkActive,
     RouterOutlet,
     MatToolbarModule,
     MatSidenavModule,
@@ -46,10 +52,21 @@ const ITENS_DE_NAVEGACAO: ItemDeNavegacao[] = [
 export class Shell {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly breakpointObserver = inject(BreakpointObserver);
   protected readonly theme = inject(ThemeTransitionService);
 
   readonly usuario = this.authService.usuario;
   readonly itensDeNavegacao = ITENS_DE_NAVEGACAO;
+
+  readonly isMobile = toSignal(
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
+      .pipe(map((estado) => estado.matches)),
+    { initialValue: false },
+  );
+
+  readonly colapsado = signal(localStorage.getItem(CHAVE_SIDENAV_COLAPSADO) === 'true');
+  readonly menuMobileAberto = signal(false);
 
   podeVer(item: ItemDeNavegacao): boolean {
     if (!item.perfisPermitidos) {
@@ -57,6 +74,22 @@ export class Shell {
     }
     const perfil = this.authService.perfil();
     return perfil !== null && item.perfisPermitidos.includes(perfil);
+  }
+
+  alternarColapso(): void {
+    this.colapsado.update((atual) => {
+      const novo = !atual;
+      localStorage.setItem(CHAVE_SIDENAV_COLAPSADO, String(novo));
+      return novo;
+    });
+  }
+
+  alternarMenuMobile(): void {
+    this.menuMobileAberto.update((atual) => !atual);
+  }
+
+  fecharMenuMobile(): void {
+    this.menuMobileAberto.set(false);
   }
 
   sair(): void {

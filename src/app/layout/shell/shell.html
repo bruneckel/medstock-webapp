@@ -1,11 +1,38 @@
 <mat-sidenav-container class="shell">
-  <mat-sidenav mode="side" opened class="shell-sidenav">
-    <div class="shell-brand">Smart HAS</div>
+  <mat-sidenav
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile() || menuMobileAberto()"
+    (closed)="fecharMenuMobile()"
+    class="shell-sidenav"
+    [class.shell-sidenav--colapsado]="!isMobile() && colapsado()"
+  >
+    <div class="shell-brand-row">
+      @if (isMobile() || !colapsado()) {
+        <div class="shell-brand">Smart HAS</div>
+      }
+      @if (!isMobile()) {
+        <button
+          mat-icon-button
+          (click)="alternarColapso()"
+          [attr.aria-label]="colapsado() ? 'Expandir menu' : 'Recolher menu'"
+        >
+          <mat-icon>{{ colapsado() ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+        </button>
+      }
+    </div>
     <mat-nav-list>
       <ng-container *ngFor="let item of itensDeNavegacao">
-        <a *ngIf="podeVer(item)" mat-list-item [routerLink]="item.rota">
+        <a
+          *ngIf="podeVer(item)"
+          mat-list-item
+          [routerLink]="item.rota"
+          routerLinkActive="shell-nav-item--ativo"
+          (click)="fecharMenuMobile()"
+        >
           <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
-          <span matListItemTitle>{{ item.rotulo }}</span>
+          @if (isMobile() || !colapsado()) {
+            <span matListItemTitle>{{ item.rotulo }}</span>
+          }
         </a>
       </ng-container>
     </mat-nav-list>
@@ -13,6 +40,11 @@
 
   <mat-sidenav-content>
     <mat-toolbar class="shell-topbar">
+      @if (isMobile()) {
+        <button mat-icon-button (click)="alternarMenuMobile()" aria-label="Abrir menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
       <span class="shell-spacer"></span>
       <button
         mat-icon-button

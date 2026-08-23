@@ -3,16 +3,41 @@
 }
 
 .shell-sidenav {
-  width: 260px;
+  width: 240px;
   background: var(--mat-sys-surface-container);
   display: flex;
   flex-direction: column;
+  transition: width var(--transition-collapse);
+  overflow-x: hidden;
+}
+
+.shell-sidenav--colapsado {
+  width: 68px;
+}
+
+.shell-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  min-height: 3.5rem;
+  box-sizing: border-box;
 }
 
 .shell-brand {
-  padding: 1.5rem 1rem;
   font-size: 1.25rem;
   font-weight: 700;
+  color: var(--mat-sys-primary);
+  white-space: nowrap;
+}
+
+.shell-nav-item--ativo {
+  background: color-mix(in srgb, var(--mat-sys-primary) 18%, transparent);
+  border-radius: var(--radius-control);
+}
+
+.shell-nav-item--ativo,
+.shell-nav-item--ativo mat-icon {
   color: var(--mat-sys-primary);
 }
 
