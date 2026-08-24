@@ -11,12 +11,13 @@ import { SnackbarService } from '../../../core/ui/snackbar.service';
 import { extrairMensagemDeErro } from '../../../core/http/erro-api.util';
 import { Fornecedor } from '../../../core/models';
 import { ConfirmDialog } from '../../../shared/components/confirm-dialog/confirm-dialog';
+import { StatusTag } from '../../../shared/components/status-tag/status-tag';
 
 const COLUNAS = ['nome', 'cnpj', 'email', 'slaHoras', 'ativo', 'acoes'];
 
 @Component({
   selector: 'app-fornecedores-lista',
-  imports: [CommonModule, RouterLink, MatTableModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, RouterLink, MatTableModule, MatButtonModule, MatIconModule, StatusTag],
   templateUrl: './fornecedores-lista.html',
   styleUrl: './fornecedores-lista.css',
 })

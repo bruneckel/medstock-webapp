@@ -58,4 +58,16 @@ describe('FornecedoresLista', () => {
 
     expect(inativarSpy).toHaveBeenCalledWith('1');
   });
+
+  it('renders an Ativo status tag for an active fornecedor', () => {
+    const fornecedorService = TestBed.inject(FornecedorService);
+    vi.spyOn(fornecedorService, 'listar').mockReturnValue(of([fornecedorFalso]));
+
+    const fixture = TestBed.createComponent(FornecedoresLista);
+    fixture.detectChanges();
+
+    const elemento = fixture.nativeElement as HTMLElement;
+    expect(elemento.querySelector('app-status-tag')).toBeTruthy();
+    expect(elemento.textContent).toContain('Ativo');
+  });
 });

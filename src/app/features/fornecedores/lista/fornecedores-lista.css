@@ -18,19 +18,3 @@
   background: transparent;
 }
 
-.fornecedor-situacao {
-  padding: 0.125rem 0.625rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.fornecedor-situacao--ativo {
-  background: var(--status-success-bg);
-  color: var(--status-success);
-}
-
-.fornecedor-situacao--inativo {
-  background: var(--status-danger-bg);
-  color: var(--status-danger);
-}
