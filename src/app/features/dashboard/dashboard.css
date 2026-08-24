@@ -7,8 +7,8 @@
 
 .kpi-card {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  align-items: flex-start;
+  gap: 0.75rem;
   padding: 1.25rem;
   border-radius: var(--radius-card);
   background: var(--mat-sys-surface-container);
@@ -16,10 +16,53 @@
   box-shadow: var(--shadow-card);
 }
 
+.kpi-icone {
+  width: 2.125rem;
+  height: 2.125rem;
+  border-radius: var(--radius-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-icone mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.kpi-icone--danger {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+}
+
+.kpi-icone--warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+}
+
+.kpi-icone--success {
+  background: var(--status-success-bg);
+  color: var(--status-success);
+}
+
+.kpi-icone--info {
+  background: var(--status-info-bg);
+  color: var(--status-info);
+}
+
+.kpi-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .kpi-valor {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-surface);
+  line-height: 1.1;
 }
 
 .kpi-rotulo {

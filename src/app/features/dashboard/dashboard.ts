@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartConfiguration } from 'chart.js';
+import { MatIconModule } from '@angular/material/icon';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { DashboardResumo } from '../../core/models';
 import { StatusTag } from '../../shared/components/status-tag/status-tag';
@@ -8,7 +9,7 @@ import { ChartCanvas } from '../../shared/components/chart-canvas/chart-canvas';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, StatusTag, ChartCanvas],
+  imports: [CommonModule, MatIconModule, StatusTag, ChartCanvas],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

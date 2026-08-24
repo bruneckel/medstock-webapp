@@ -12,20 +12,40 @@
       <ng-container *ngIf="resumo() as resumoAtual">
         <div class="dashboard-kpis">
           <div class="kpi-card">
-            <span class="kpi-valor">{{ resumoAtual.estoque.total }}</span>
-            <span class="kpi-rotulo">Itens no estoque</span>
+            <div class="kpi-icone kpi-icone--info">
+              <mat-icon>inventory_2</mat-icon>
+            </div>
+            <div class="kpi-texto">
+              <span class="kpi-valor">{{ resumoAtual.estoque.total }}</span>
+              <span class="kpi-rotulo">Itens no estoque</span>
+            </div>
           </div>
           <div class="kpi-card">
-            <span class="kpi-valor">{{ resumoAtual.estoque.criticos }}</span>
-            <span class="kpi-rotulo">Críticos</span>
+            <div class="kpi-icone kpi-icone--danger">
+              <mat-icon>warning</mat-icon>
+            </div>
+            <div class="kpi-texto">
+              <span class="kpi-valor">{{ resumoAtual.estoque.criticos }}</span>
+              <span class="kpi-rotulo">Críticos</span>
+            </div>
           </div>
           <div class="kpi-card">
-            <span class="kpi-valor">{{ resumoAtual.estoque.vencendo }}</span>
-            <span class="kpi-rotulo">Vencendo em 30 dias</span>
+            <div class="kpi-icone kpi-icone--warning">
+              <mat-icon>schedule</mat-icon>
+            </div>
+            <div class="kpi-texto">
+              <span class="kpi-valor">{{ resumoAtual.estoque.vencendo }}</span>
+              <span class="kpi-rotulo">Vencendo em 30 dias</span>
+            </div>
           </div>
           <div class="kpi-card">
-            <span class="kpi-valor">{{ resumoAtual.pedidosDoDia.length }}</span>
-            <span class="kpi-rotulo">Pedidos hoje</span>
+            <div class="kpi-icone kpi-icone--success">
+              <mat-icon>local_shipping</mat-icon>
+            </div>
+            <div class="kpi-texto">
+              <span class="kpi-valor">{{ resumoAtual.pedidosDoDia.length }}</span>
+              <span class="kpi-rotulo">Pedidos hoje</span>
+            </div>
           </div>
         </div>
 
