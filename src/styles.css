@@ -87,3 +87,22 @@ button[mat-flat-button][color='primary'] {
 .shell-sidenav--colapsado .mdc-list-item__content {
   display: none;
 }
+
+/*
+  Global for the same reason as the rule above: mat-table's header/row/cell
+  elements are rendered by Angular Material's own component templates, not
+  by whichever feature component's stylesheet would otherwise seem like the
+  natural place for this.
+*/
+th.mat-mdc-header-cell,
+td.mat-mdc-cell {
+  padding: 0 20px;
+}
+
+tr.mat-mdc-header-row {
+  background: var(--field-fill);
+}
+
+tr.mat-mdc-row:hover {
+  background: color-mix(in srgb, var(--mat-sys-on-surface) 4%, transparent);
+}

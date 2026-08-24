@@ -23,6 +23,9 @@ html {
   --mat-button-outlined-container-shape: var(--radius-button);
   --mat-button-text-container-shape: var(--radius-button);
   --mat-button-tonal-container-shape: var(--radius-button);
+  --mat-table-header-container-height: 52px;
+  --mat-table-row-item-container-height: 56px;
+  --mat-table-header-headline-weight: 600;
 }
 
 .mdc-text-field--filled {
