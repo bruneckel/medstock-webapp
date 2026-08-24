@@ -18,10 +18,8 @@
 
 .shell-sidenav--colapsado .mdc-list-item {
   justify-content: center;
-}
-
-.shell-sidenav--colapsado .mdc-list-item__content {
-  display: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .shell-brand-row {

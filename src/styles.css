@@ -75,3 +75,15 @@ h2 {
 button[mat-flat-button][color='primary'] {
   box-shadow: var(--shadow-button-primary);
 }
+
+/*
+  Global (unscoped) on purpose: Angular's view encapsulation adds a
+  component-scoped attribute to elements a component's own template
+  creates, but .mdc-list-item__content is rendered internally by
+  Angular Material's MatListItem component, not by Shell's template —
+  so a rule for it inside shell.css's component stylesheet carries a
+  scoping attribute that never matches it. This has to live here.
+*/
+.shell-sidenav--colapsado .mdc-list-item__content {
+  display: none;
+}
