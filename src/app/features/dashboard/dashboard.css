@@ -60,6 +60,11 @@
   color: var(--status-info);
 }
 
+.kpi-icone--violet {
+  background: var(--mat-sys-primary-container);
+  color: var(--accent-text);
+}
+
 .kpi-texto {
   display: flex;
   flex-direction: column;
