@@ -53,6 +53,7 @@ html.dark {
   --field-fill: #262626;
   --field-border: #8A8393;
   --accent-text: #D5BAFF;
+  --card-border: transparent;
   --mat-form-field-filled-container-color: var(--field-fill);
 }
 
@@ -71,15 +72,16 @@ html.light {
     primary-container: #E6E0FF,
     on-primary: #FFFFFF,
     on-primary-container: #190864,
-    surface: #FFFBFF,
-    surface-container: #F2EDFA,
+    surface: #F7F7F9,
+    surface-container: #FFFFFF,
   ));
 
   --status-danger-text: #B3211F;
-  --shadow-card: 0 4px 12px rgba(15, 15, 20, .08);
-  --field-fill: #EDE9F8;
+  --shadow-card: 0 1px 3px rgba(20, 20, 30, .06);
+  --field-fill: #F4F4F5;
   --field-border: #79738A;
   --accent-text: var(--mat-sys-primary);
+  --card-border: #E7E7EB;
   --mat-form-field-filled-container-color: var(--field-fill);
 }
 
