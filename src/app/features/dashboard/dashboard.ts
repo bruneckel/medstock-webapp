@@ -4,7 +4,7 @@ import { ChartConfiguration } from 'chart.js';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { DashboardResumo } from '../../core/models';
-import { StatusTag } from '../../shared/components/status-tag/status-tag';
+import { ICONE_POR_TOM, StatusConhecido, StatusTag, TOM_POR_STATUS } from '../../shared/components/status-tag/status-tag';
 import { ChartCanvas } from '../../shared/components/chart-canvas/chart-canvas';
 
 @Component({
@@ -39,6 +39,14 @@ export class Dashboard {
       options: { plugins: { legend: { labels: { color: '#FFFFFF' } } } },
     };
   });
+
+  tomDoStatus(status: StatusConhecido): 'danger' | 'warning' | 'success' | 'info' {
+    return TOM_POR_STATUS[status];
+  }
+
+  iconeDoStatus(status: StatusConhecido): string {
+    return ICONE_POR_TOM[this.tomDoStatus(status)];
+  }
 
   constructor() {
     this.dashboardService.resumo().subscribe({

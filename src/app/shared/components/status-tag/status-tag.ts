@@ -18,7 +18,7 @@ export type StatusConhecido =
   | 'CANCELADO'
   | 'INFO';
 
-const TOM_POR_STATUS: Record<StatusConhecido, 'danger' | 'warning' | 'success' | 'info'> = {
+export const TOM_POR_STATUS: Record<StatusConhecido, 'danger' | 'warning' | 'success' | 'info'> = {
   CRITICO: 'danger',
   ATRASADO: 'danger',
   NAO_ENTREGUE: 'danger',
@@ -54,7 +54,7 @@ const ROTULO_POR_STATUS: Record<StatusConhecido, string> = {
   INFO: 'Info',
 };
 
-const ICONE_POR_TOM: Record<'danger' | 'warning' | 'success' | 'info', string> = {
+export const ICONE_POR_TOM: Record<'danger' | 'warning' | 'success' | 'info', string> = {
   danger: 'error',
   warning: 'warning',
   success: 'check_circle',

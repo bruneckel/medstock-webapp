@@ -1,8 +1,16 @@
+.dashboard-resumo {
+  background: var(--mat-sys-surface-container);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
 .dashboard-kpis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 0 0 1.5rem;
 }
 
 .kpi-card {
@@ -97,4 +105,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.dashboard-item-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-item-icone {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-control);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dashboard-item-icone mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.dashboard-item-icone--danger {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+}
+
+.dashboard-item-icone--warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+}
+
+.dashboard-item-icone--success {
+  background: var(--status-success-bg);
+  color: var(--status-success);
+}
+
+.dashboard-item-icone--info {
+  background: var(--status-info-bg);
+  color: var(--status-info);
 }
