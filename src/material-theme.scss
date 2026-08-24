@@ -54,7 +54,7 @@ html.dark {
   --field-fill: #262626;
   --field-border: #868686;
   --accent-text: #D5BAFF;
-  --card-border: #868686;
+  --card-border: transparent;
   --mat-form-field-filled-container-color: var(--field-fill);
 }
 
@@ -79,11 +79,11 @@ html.light {
   ));
 
   --status-danger-text: #B3211F;
-  --shadow-card: 0 1px 3px rgba(20, 20, 30, .06);
+  --shadow-card: 0 4px 12px rgba(15, 15, 20, .12);
   --field-fill: #F4F4F5;
   --field-border: #898989;
   --accent-text: var(--mat-sys-primary);
-  --card-border: #898989;
+  --card-border: transparent;
   --mat-form-field-filled-container-color: var(--field-fill);
 }
 
