@@ -15,7 +15,7 @@ html {
   --radius-control: 10px;
   --radius-button: 12px;
   --shadow-button-primary: 0 2px 6px rgba(83, 74, 183, .35);
-  --transition-collapse: 200ms ease;
+  --transition-collapse: 220ms cubic-bezier(0.4, 0, 0.2, 1);
   --mat-form-field-filled-container-shape: var(--radius-control);
   --mat-form-field-filled-active-indicator-color: transparent;
   --mat-dialog-container-shape: var(--radius-card);
