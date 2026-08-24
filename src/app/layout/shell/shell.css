@@ -8,8 +8,18 @@
   border-right: 1px solid var(--card-border);
   display: flex;
   flex-direction: column;
-  transition: width var(--transition-collapse);
   overflow-x: hidden;
+}
+
+/*
+  Element+class beats Angular Material's own .mat-drawer-transition
+  .mat-drawer rule (two classes, same specificity tier as a bare
+  .shell-sidenav) which otherwise silently wins the cascade tie and
+  replaces this transition with its own transform-only one, making the
+  width collapse happen instantly with no animation at all.
+*/
+mat-sidenav.shell-sidenav {
+  transition: width var(--transition-collapse);
 }
 
 .shell-sidenav--colapsado {
@@ -48,12 +58,16 @@
   color: var(--accent-text);
 }
 
-.shell-sidenav--colapsado .shell-nav-item--ativo {
+.shell-nav-wrapper {
   position: relative;
 }
 
-.shell-sidenav--colapsado .shell-nav-item--ativo::before {
-  content: '';
+.shell-nav-bar {
+  display: none;
+}
+
+.shell-sidenav--colapsado .shell-nav-item--ativo ~ .shell-nav-bar {
+  display: block;
   position: absolute;
   left: 0;
   top: 8px;

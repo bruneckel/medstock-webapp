@@ -22,19 +22,21 @@
     </div>
     <mat-nav-list>
       <ng-container *ngFor="let item of itensDeNavegacao">
-        <a
-          *ngIf="podeVer(item)"
-          mat-list-item
-          [routerLink]="item.rota"
-          routerLinkActive="shell-nav-item--ativo"
-          [attr.aria-label]="item.rotulo"
-          (click)="fecharMenuMobile()"
-        >
-          <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
-          @if (isMobile() || !colapsado()) {
-            <span matListItemTitle>{{ item.rotulo }}</span>
-          }
-        </a>
+        <div class="shell-nav-wrapper" *ngIf="podeVer(item)">
+          <a
+            mat-list-item
+            [routerLink]="item.rota"
+            routerLinkActive="shell-nav-item--ativo"
+            [attr.aria-label]="item.rotulo"
+            (click)="fecharMenuMobile()"
+          >
+            <mat-icon matListItemIcon>{{ item.icone }}</mat-icon>
+            @if (isMobile() || !colapsado()) {
+              <span matListItemTitle>{{ item.rotulo }}</span>
+            }
+          </a>
+          <span class="shell-nav-bar"></span>
+        </div>
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
