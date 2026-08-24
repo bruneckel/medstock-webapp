@@ -1,10 +1,12 @@
 import { Component, computed, input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 export type StatusConhecido =
   | 'CRITICO'
   | 'ATENCAO'
   | 'NORMAL'
   | 'ATIVO'
+  | 'INATIVO'
   | 'RESOLVIDO'
   | 'IGNORADO'
   | 'PENDENTE'
@@ -22,6 +24,7 @@ const TOM_POR_STATUS: Record<StatusConhecido, 'danger' | 'warning' | 'success' |
   NAO_ENTREGUE: 'danger',
   EXTRAVIO_REEMBOLSO: 'danger',
   CANCELADO: 'danger',
+  INATIVO: 'danger',
   ATENCAO: 'warning',
   PENDENTE: 'warning',
   IGNORADO: 'warning',
@@ -38,6 +41,7 @@ const ROTULO_POR_STATUS: Record<StatusConhecido, string> = {
   ATENCAO: 'Atenção',
   NORMAL: 'Normal',
   ATIVO: 'Ativo',
+  INATIVO: 'Inativo',
   RESOLVIDO: 'Resolvido',
   IGNORADO: 'Ignorado',
   PENDENTE: 'Pendente',
@@ -50,9 +54,22 @@ const ROTULO_POR_STATUS: Record<StatusConhecido, string> = {
   INFO: 'Info',
 };
 
+const ICONE_POR_TOM: Record<'danger' | 'warning' | 'success' | 'info', string> = {
+  danger: 'error',
+  warning: 'warning',
+  success: 'check_circle',
+  info: 'info',
+};
+
 @Component({
   selector: 'app-status-tag',
-  template: `<span class="status-tag" [class]="'status-tag--' + tom()">{{ rotulo() }}</span>`,
+  imports: [MatIconModule],
+  template: `
+    <span class="status-tag" [class]="'status-tag--' + tom()">
+      <mat-icon class="status-tag-icone">{{ icone() }}</mat-icon>
+      {{ rotulo() }}
+    </span>
+  `,
   styleUrl: './status-tag.css',
 })
 export class StatusTag {
@@ -60,4 +77,5 @@ export class StatusTag {
 
   readonly tom = computed(() => TOM_POR_STATUS[this.status()]);
   readonly rotulo = computed(() => ROTULO_POR_STATUS[this.status()]);
+  readonly icone = computed(() => ICONE_POR_TOM[this.tom()]);
 }

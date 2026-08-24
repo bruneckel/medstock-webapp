@@ -27,4 +27,22 @@ describe('StatusTag', () => {
     const elemento = fixture.nativeElement as HTMLElement;
     expect(elemento.textContent).toContain('Pendente');
   });
+
+  it('maps INATIVO to the danger tone and an "Inativo" label', () => {
+    const fixture = TestBed.createComponent(StatusTag);
+    fixture.componentRef.setInput('status', 'INATIVO');
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.tom()).toBe('danger');
+    expect(fixture.componentInstance.rotulo()).toBe('Inativo');
+  });
+
+  it('renders an icon matching the tone', () => {
+    const fixture = TestBed.createComponent(StatusTag);
+    fixture.componentRef.setInput('status', 'NORMAL');
+    fixture.detectChanges();
+
+    const icone = fixture.nativeElement.querySelector('mat-icon') as HTMLElement;
+    expect(icone.textContent?.trim()).toBe('check_circle');
+  });
 });
