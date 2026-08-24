@@ -19,6 +19,7 @@
 .alertas-tabela-card {
   border-radius: var(--radius-card);
   background: var(--mat-sys-surface-container);
+  border: 1px solid var(--card-border);
   box-shadow: var(--shadow-card);
   overflow-x: auto;
 }
